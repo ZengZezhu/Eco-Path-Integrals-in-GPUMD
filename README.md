@@ -1,4 +1,3 @@
-````markdown
 # Eco-PIMD patch for GPUMD
 
 This repository provides a lightweight source-code patch for adding **Eco-PIMD internal-mode frequencies** to the GPUMD implementation of path-integral molecular dynamics.
@@ -491,6 +490,3 @@ Planned improvements include:
 * more examples;
 * automated RMSE validation scripts;
 * benchmark data for representative materials.
-
-```
-```
