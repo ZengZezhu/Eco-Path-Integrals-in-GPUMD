@@ -12,7 +12,7 @@ Eco-PIMD accelerates PIMD convergence by replacing the primitive Trotter ring-po
 
 In conventional PIMD, the primitive internal-mode frequencies are
 
-$$
+$
 \Omega_k^{\mathrm{Trotter}}
 ===========================
 
@@ -23,7 +23,7 @@ $$
 
 Eco-PIMD replaces these primitive frequencies by optimized frequencies,
 
-$$
+$
 \Omega_k^{\mathrm{Eco}}
 =======================
 
