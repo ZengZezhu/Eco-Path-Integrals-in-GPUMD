@@ -1,9 +1,8 @@
-
 # Eco-PIMD patch for GPUMD
 
 This repository provides a source-code patch for adding **Eco-PIMD internal-mode frequencies** to the GPUMD implementation of path-integral molecular dynamics.
 
-Eco-PIMD is designed to accelerate PIMD convergence by replacing the primitive Trotter ring-polymer internal-mode frequencies with optimized frequencies. The goal is to reproduce quantum harmonic fluctuations with fewer beads, which can reduce the computational cost of PIMD simulations for systems with high-frequency vibrations.
+Eco-PIMD accelerates PIMD convergence by replacing the primitive Trotter ring-polymer internal-mode frequencies with optimized frequencies. The goal is to reproduce quantum harmonic fluctuations with fewer beads, thereby reducing the computational cost of PIMD simulations, especially for systems containing high-frequency light-atom vibrations.
 
 <p align="center">
   <img src="docs/eco_pimd_concept.png" width="800">
@@ -13,23 +12,25 @@ Eco-PIMD is designed to accelerate PIMD convergence by replacing the primitive T
 
 In conventional PIMD, the primitive internal-mode frequencies are
 
-\[
-\Omega_k^{\rm Trotter}
-=
+$$
+\Omega_k^{\mathrm{Trotter}}
+===========================
+
 2\omega_P\sin\left(\frac{k\pi}{P}\right),
 \qquad
-\omega_P=\frac{Pk_{\rm B}T}{\hbar}.
-\]
+\omega_P=\frac{Pk_{\mathrm{B}}T}{\hbar}.
+$$
 
 Eco-PIMD replaces these primitive frequencies by optimized frequencies,
 
-\[
-\Omega_k^{\rm Eco}
-=
-\omega_P \lambda_k^{\rm Eco},
-\]
+$$
+\Omega_k^{\mathrm{Eco}}
+=======================
 
-where the dimensionless factors \(\lambda_k^{\rm Eco}\) are optimized to reproduce the exact quantum fluctuation of harmonic oscillators over a selected frequency range. In this way, fewer beads can often give the same converged result.
+\omega_P\lambda_k^{\mathrm{Eco}}.
+$$
+
+The optimized factors $\lambda_k^{\mathrm{Eco}}$ are chosen to reproduce the exact quantum harmonic fluctuation over a selected frequency range. Therefore, fewer beads can often give the same converged result.
 
 The patched GPUMD supports three internal-mode choices:
 
@@ -37,7 +38,7 @@ The patched GPUMD supports three internal-mode choices:
 trotter
 matsubara
 eco
-````
+```
 
 The default is still `trotter`, so the original GPUMD behavior is preserved unless another option is explicitly used.
 
@@ -57,18 +58,22 @@ No additional Python package is required for applying the patch.
 
 The patched GPUMD requires:
 
-* CUDA;
-* a C++14-compatible compiler;
-* LAPACK/BLAS, because the Eco optimizer diagonalizes a Hessian using `dsyev_`.
+```text
+CUDA
+C++14-compatible compiler
+LAPACK/BLAS
+```
 
-On many HPC systems, OpenBLAS is enough. For example:
+LAPACK/BLAS is needed because the Eco optimizer diagonalizes a Hessian using `dsyev_`.
+
+On many HPC systems, OpenBLAS is sufficient. For example:
 
 ```bash
 module load CUDA
 module load OpenBLAS
 ```
 
-If the final link step fails with
+Loading OpenBLAS makes the library available, but the final GPUMD link command must still explicitly link it. If compilation fails with
 
 ```text
 undefined reference to `dsyev_'
@@ -129,6 +134,31 @@ make -j
 
 If LAPACK/OpenBLAS is linked correctly, the executable `gpumd` should be generated.
 
+If the final link step fails with
+
+```text
+undefined reference to `dsyev_'
+```
+
+edit the GPUMD `src/makefile` and add OpenBLAS or LAPACK/BLAS to the final link line. For example:
+
+```make
+LIBS = -lcublas -lcusolver -lcufft -lopenblas
+```
+
+or, depending on the system,
+
+```make
+LIBS = -lcublas -lcusolver -lcufft -llapack -lblas
+```
+
+Then recompile:
+
+```bash
+make clean
+make -j
+```
+
 ## 5. How to run Eco-PIMD
 
 The original GPUMD PIMD syntax still works:
@@ -161,21 +191,23 @@ ensemble pimd 160 60 60 100 0.0 100.0 1000 eco 3500
 
 Here `3500` means
 
-[
-\omega_{\max}=3500~{\rm cm}^{-1}.
-]
+$$
+\omega_{\max}=3500~\mathrm{cm}^{-1}.
+$$
 
-This is a wavenumber cutoff, not an angular frequency. The dimensionless fitting range is
+This is a wavenumber cutoff, not an angular frequency.
 
-[
+The dimensionless fitting range is
+
+$$
 x_{\max}
 ========
 
 # \beta\hbar\omega_{\max}
 
 1.438776877
-\frac{\omega_{\max}^{\rm cm^{-1}}}{T}.
-]
+\frac{\omega_{\max}^{\mathrm{cm}^{-1}}}{T}.
+$$
 
 For physical simulations over a temperature range, keep the same physical cutoff, for example `eco 3500`, at all temperatures.
 
@@ -207,6 +239,18 @@ dump_thermo      200
 run              100000
 ```
 
+For primitive Trotter PIMD with the same bead number:
+
+```text
+ensemble         pimd 160 60 60 100 0.0 100.0 1000 trotter
+```
+
+or simply omit the final keyword:
+
+```text
+ensemble         pimd 160 60 60 100 0.0 100.0 1000
+```
+
 ## 7. RMSE output
 
 When using the `eco` option, GPUMD prints the fitting errors:
@@ -219,19 +263,51 @@ RMSE(eco)=...
 
 These RMSE values depend only on
 
-[
+$$
 P
-]
+$$
 
 and
 
-[
+$$
 x_{\max}=\beta\hbar\omega_{\max}.
-]
+$$
 
 They do not depend on the material, potential, cell size, or atom number.
 
-## 8. Citation
+For a fixed $x_{\max}$, Eco should give a much smaller RMSE than primitive Trotter PIMD at the same bead number.
+
+When plotting RMSE versus bead number, make sure all data points use the same $x_{\max}$. Mixing different temperatures or different $\omega_{\max}$ values can create artificial non-monotonic behavior.
+
+## 8. Notes on `omega_max_cm1`
+
+The Eco input cutoff is a wavenumber in $\mathrm{cm}^{-1}$.
+
+For example,
+
+$$
+3500~\mathrm{cm}^{-1}
+\approx
+105~\mathrm{THz}
+$$
+
+as a linear frequency.
+
+There is no extra $2\pi$ factor in the conversion because
+
+$$
+\hbar\omega = hf = hc\tilde{\nu}.
+$$
+
+For a material with maximum vibrational frequency around $100~\mathrm{THz}$, a cutoff around
+
+$$
+3300\text{--}3500~\mathrm{cm}^{-1}
+$$
+
+is a reasonable starting choice.
+
+## 9. Citation
 
 If you use this patch, please cite this repository:
 
@@ -240,5 +316,15 @@ Zezhu Zeng, eco-pimd-patch-to-GPUMD,
 https://github.com/ZengZezhu/eco-pimd-patch-to-GPUMD
 ```
 
-```
+## 10. Status
+
+This patch is under active development. Current features include:
+
+```text
+Trotter internal-mode frequencies
+Matsubara internal-mode frequencies
+Eco optimized internal-mode frequencies
+Fortran-consistent Eco optimizer
+RMSE reporting for Trotter, Matsubara, and Eco
+optional compile-time maximum bead-number update
 ```
