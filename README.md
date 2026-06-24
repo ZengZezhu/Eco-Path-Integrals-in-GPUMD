@@ -5,7 +5,7 @@ This repository provides a source-code patch for adding **Eco-PIMD internal-mode
 Eco-PIMD accelerates PIMD convergence by replacing the primitive Trotter ring-polymer internal-mode frequencies with optimized frequencies. The goal is to reproduce quantum harmonic fluctuations with fewer beads, reducing the computational cost of PIMD simulations, especially for systems with high-frequency light-atom vibrations.
 
 <p align="center">
-  <img src="./docs/eco_pimd_concept.png" width="800" alt="Eco-PIMD concept figure">
+  <img src="./eco_pimd_concept.png" width="800" alt="Eco-PIMD concept figure">
 </p>
 
 ## 1. Basic idea
