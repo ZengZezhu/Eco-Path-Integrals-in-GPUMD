@@ -19,11 +19,11 @@ $
 2\omega_P\sin\left(\frac{k\pi}{P}\right),
 \qquad
 \omega_P=\frac{Pk_{\mathrm{B}}T}{\hbar}.
-$$
+$
 
 Eco-PIMD replaces these primitive frequencies by optimized frequencies,
 
-$
+$$
 \Omega_k^{\mathrm{Eco}}
 =======================
 
