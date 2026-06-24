@@ -1,4 +1,3 @@
-# eco-pimd-patch-to-GPUMD
 ````markdown
 # Eco-PIMD patch for GPUMD
 
