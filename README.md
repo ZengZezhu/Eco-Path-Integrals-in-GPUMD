@@ -260,35 +260,12 @@ For a fixed $x_{\max}$, Eco should give a much smaller RMSE than primitive Trott
 
 When plotting RMSE versus bead number, make sure all data points use the same $x_{\max}$. Mixing different temperatures or different $\omega_{\max}$ values can create artificial non-monotonic behavior.
 
-## 8. Notes on `$$omega_{max}$$`
+## 8. Citation
 
-The Eco input cutoff is a wavenumber in $\mathrm{cm}^{-1}$.
-
-For example,
-
-$$
-3500~\mathrm{cm}^{-1}
-\approx
-105~\mathrm{THz}
-$$
-
-as a linear frequency.
-
-There is no extra $2\pi$ factor in the conversion because
-
-$$
-\hbar\omega = hf = hc\tilde{\nu}.
-$$
-
-For a material with maximum vibrational frequency around $100~\mathrm{THz}$, a cutoff around $3300$--$3500~\mathrm{cm}^{-1}$ is a reasonable starting choice.
-
-## 9. Citation
-
-If you use this patch, please cite this repository:
+If you use this patch, please cite the paper:
 
 ```text
-Zezhu Zeng, eco-pimd-patch-to-GPUMD,
-https://github.com/ZengZezhu/eco-pimd-patch-to-GPUMD
+Zezhu Zeng and David E. Manolopoulos, Economised path integrals, submitted to Journal of Chemistry Physics. 
 ```
 
 ## 10. Status
