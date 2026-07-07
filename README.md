@@ -260,7 +260,7 @@ For a fixed $x_{\max}$, Eco should give a much smaller RMSE than primitive Trott
 
 When plotting RMSE versus bead number, make sure all data points use the same $x_{\max}$. Mixing different temperatures or different $\omega_{\max}$ values can create artificial non-monotonic behavior.
 
-## 8. Notes on `omega_max_cm1`
+## 8. Notes on `$omega_{max}$`
 
 The Eco input cutoff is a wavenumber in $\mathrm{cm}^{-1}$.
 
@@ -293,13 +293,4 @@ https://github.com/ZengZezhu/eco-pimd-patch-to-GPUMD
 
 ## 10. Status
 
-This patch is under active development. Current features include:
-
-```text
-Trotter internal-mode frequencies
-Matsubara internal-mode frequencies
-Eco optimized internal-mode frequencies
-Fortran-consistent Eco optimizer
-RMSE reporting for Trotter, Matsubara, and Eco
-optional compile-time maximum bead-number update
-```
+This patch is under active development.
