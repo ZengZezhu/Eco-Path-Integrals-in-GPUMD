@@ -267,7 +267,3 @@ If you use this patch, please cite the paper:
 ```text
 Zezhu Zeng and David E. Manolopoulos, Economised path integrals, submitted to Journal of Chemistry Physics. 
 ```
-
-## 10. Status
-
-This patch is under active development.
