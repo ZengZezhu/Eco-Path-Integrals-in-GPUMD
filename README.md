@@ -1,4 +1,4 @@
-# Eco-PIMD patch for GPUMD
+# Eco Path Integrals in GPUMD
 
 This repository provides a source-code patch for adding **Eco Path Integrals** to the GPUMD implementation of path-integral molecular dynamics (PIMD).
 
