@@ -260,7 +260,7 @@ For a fixed $x_{\max}$, Eco should give a much smaller RMSE than primitive Trott
 
 When plotting RMSE versus bead number, make sure all data points use the same $x_{\max}$. Mixing different temperatures or different $\omega_{\max}$ values can create artificial non-monotonic behavior.
 
-## 8. Notes on `$omega_{max}$`
+## 8. Notes on `$$omega_{max}$$`
 
 The Eco input cutoff is a wavenumber in $\mathrm{cm}^{-1}$.
 
