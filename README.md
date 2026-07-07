@@ -1,6 +1,6 @@
 # Eco Path Integrals in GPUMD
 
-This repository provides a source-code patch for adding **Eco Path Integrals** to the GPUMD implementation of path-integral molecular dynamics (PIMD).
+This repository provides a source-code patch for adding **Eco Path Integrals** to the GPUMD (https://gpumd.org/) implementation of path-integral molecular dynamics (PIMD).
 
 Eco PIMD accelerates PIMD convergence by replacing the primitive Trotter ring-polymer internal-mode frequencies with optimized frequencies. The goal is to reproduce quantum harmonic fluctuations with fewer beads, reducing the computational cost of PIMD simulations, especially for quantum systems with high-frequency light-atom vibrations.
 
