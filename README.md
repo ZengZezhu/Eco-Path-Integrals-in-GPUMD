@@ -13,20 +13,13 @@ Eco PIMD accelerates PIMD convergence by replacing the primitive Trotter ring-po
 In conventional PIMD, the primitive internal-mode frequencies are
 
 $$
-\Omega_k^{\mathrm{Trotter}} =
+\omega_k^{\mathrm{Trotter}} =
 2\omega_P\sin\left(\frac{k\pi}{P}\right),
 \qquad
 \omega_P = \frac{P k_{\mathrm{B}} T}{\hbar}.
 $$
 
-Eco-PIMD replaces these primitive frequencies by optimized frequencies,
-
-$$
-\Omega_k^{\mathrm{Eco}} =
-\omega_P \lambda_k^{\mathrm{Eco}}.
-$$
-
-The optimized factors $\lambda_k^{\mathrm{Eco}}$ are chosen to reproduce the exact quantum harmonic fluctuation over a selected frequency range. Therefore, fewer beads can often give the same converged result.
+Eco-PIMD replaces these primitive frequencies by optimized frequencies which provide a closer approximation to the exact quantum harmonic fluctuations of the ring polymer over a selected frequency range, which accelerates the convergence with respect to the number of beads $P$. 
 
 The patched GPUMD supports three internal-mode choices:
 
