@@ -4,23 +4,6 @@ This repository provides a source-code patch for adding **Eco Path Integrals** t
 
 Eco PIMD accelerates PIMD convergence by replacing the primitive Trotter ring-polymer internal-mode frequencies with optimized frequencies. The goal is to reproduce quantum harmonic fluctuations with fewer beads, reducing the computational cost of PIMD simulations, especially for quantum systems with high-frequency light-atom vibrations.
 
-<p align="center">
-  <img src="./eco_pimd_concept.png" width="800" alt="Eco-PIMD concept figure">
-</p>
-
-## 1. Basic idea
-
-In conventional PIMD, the primitive internal-mode frequencies are
-
-$$
-\omega_k^{\mathrm{Trotter}} =
-2\omega_P\sin\left(\frac{k\pi}{P}\right),
-\qquad
-\omega_P = \frac{P k_{\mathrm{B}} T}{\hbar}.
-$$
-
-Eco-PIMD replaces these primitive frequencies by optimized frequencies which provide a closer approximation to the exact quantum harmonic fluctuations of the ring polymer over a selected frequency range, which accelerates the convergence with respect to the number of beads $P$. 
-
 The patched GPUMD supports three internal-mode choices:
 
 ```text
@@ -29,9 +12,11 @@ matsubara
 eco
 ```
 
-The default is still `trotter`, so the original GPUMD behavior is preserved unless another option is explicitly used.
+<p align="center">
+  <img src="./eco_pimd_concept.png" width="800" alt="Eco-PIMD concept figure">
+</p>
 
-## 2. Requirements
+## 1. Requirements
 
 ### Python
 
