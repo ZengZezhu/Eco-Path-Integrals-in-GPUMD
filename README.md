@@ -118,11 +118,9 @@ The dimensionless fitting range is
 $$
 x_{\max} =
 \beta\hbar\omega_{\max} =
-1.438776877
+1.439
 \frac{\omega_{\max}^{\mathrm{cm}^{-1}}}{T}.
 $$
-
-For physical simulations over a temperature range, keep the same physical cutoff, for example `eco 3500`, at all temperatures.
 
 ## 4. RMSE output
 
@@ -133,12 +131,6 @@ RMSE(trotter)=...
 RMSE(matsubara)=...
 RMSE(eco)=...
 ```
-
-These RMSE values depend only on $P$ and $x_{\max} = \beta\hbar\omega_{\max}$. They do not depend on the material, potential, cell size, or atom number.
-
-For a fixed $x_{\max}$, Eco should give a much smaller RMSE than primitive Trotter PIMD at the same bead number.
-
-When plotting RMSE versus bead number, make sure all data points use the same $x_{\max}$. Mixing different temperatures or different $\omega_{\max}$ values can create artificial non-monotonic behavior.
 
 ## 5. Citation
 
