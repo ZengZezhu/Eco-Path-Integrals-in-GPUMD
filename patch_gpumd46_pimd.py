@@ -32,7 +32,7 @@ HELPER_BLOCK = r'''
 // Three PIMD internal-mode frequency choices for GPUMD:
 //   PIMD_MODE_TROTTER   : original GPUMD/Trotter frequencies
 //   PIMD_MODE_MATSUBARA : y_k = 2*pi*min(k,P-k)
-//   PIMD_MODE_ECO       : optimized y_k from the revised Fortran eco.f
+//   PIMD_MODE_ECO       : optimized y_k from the Fortran eco.f in the SI
 //
 // For all schemes, this helper returns lambda_k = omega_k/omega_n.
 // The free ring-polymer propagator uses omega_k = omega_n * lambda_k.
