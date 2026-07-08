@@ -144,4 +144,4 @@ When plotting RMSE versus bead number, make sure all data points use the same $x
 
 If you use this patch, please kindly cite the paper:
 
-Zezhu Zeng and David E. Manolopoulos, [Economised path integrals](https://arxiv.org/abs/2607.06414). 
+Zezhu Zeng and David E. Manolopoulos, [Economised path integrals](https://arxiv.org/abs/2607.06414), arXiv:2607.06414. 
