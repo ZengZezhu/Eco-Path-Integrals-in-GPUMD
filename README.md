@@ -111,16 +111,7 @@ $$
 \omega_{\max} = 3500~\mathrm{cm}^{-1}.
 $$
 
-This is a wavenumber cutoff, not an angular frequency.
-
-The dimensionless fitting range is
-
-$$
-x_{\max} =
-\beta\hbar\omega_{\max} =
-1.439
-\frac{\omega_{\max}^{\mathrm{cm}^{-1}}}{T}.
-$$
+This is a wavenumber cutoff, not an angular frequency. It is used by Eco to optimise the internal mode frequencies of the ring polymer. It should be set to the highest phonon wavenumber in your system. 
 
 ## 4. RMSE output
 
