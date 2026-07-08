@@ -18,8 +18,6 @@ The patcher only needs standard Python:
 python3
 ```
 
-No additional Python package is required for applying the patch.
-
 ### GPUMD compilation
 
 The patched GPUMD requires:
@@ -29,7 +27,6 @@ CUDA
 C++14-compatible compiler
 LAPACK/BLAS
 ```
-
 LAPACK/BLAS is needed because the Eco optimizer diagonalizes a Hessian using `dsyev_`.
 
 On many HPC systems, OpenBLAS is sufficient. For example:
@@ -37,24 +34,6 @@ On many HPC systems, OpenBLAS is sufficient. For example:
 ```bash
 module load CUDA
 module load OpenBLAS
-```
-
-Loading OpenBLAS makes the library available, but the final GPUMD link command must still explicitly link it. If compilation fails with
-
-```text
-undefined reference to `dsyev_'
-```
-
-then LAPACK/OpenBLAS is not linked. Add the proper LAPACK/BLAS library to the GPUMD `src/makefile`, for example:
-
-```make
--lopenblas
-```
-
-or, depending on your system,
-
-```make
--llapack -lblas
 ```
 
 ## 3. How to apply the patch
