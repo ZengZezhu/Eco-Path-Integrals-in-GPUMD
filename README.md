@@ -111,7 +111,7 @@ $$
 \omega_{\max} = 3500~\mathrm{cm}^{-1}.
 $$
 
-This is a wavenumber cutoff, not an angular frequency. It is used by Eco to optimise the internal mode frequencies of the ring polymer. It should be set to the highest phonon wavenumber in your system. 
+This is a wavenumber cutoff, not an angular frequency. It is used by Eco to optimise the internal mode frequencies of the ring polymer. It should be set to the highest phonon wavenumber in your system (e.g., 3500 cm$$^{-1}\sim 100$$ THz for MOF-5). 
 
 ## 4. RMSE output
 
