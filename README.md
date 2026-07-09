@@ -5,7 +5,7 @@ This repository provides a source-code patch for adding **Eco Path Integrals** t
 Eco PIMD accelerates PIMD convergence by replacing the primitive Trotter ring-polymer internal-mode frequencies with optimized frequencies. We refer readers to our [arXiv paper](https://arxiv.org/abs/2607.06414) for the detailed theoretical background.
 
 <p align="center">
-  <img src="./eco-toc.pdf" width="800" alt="Eco-PIMD concept figure">
+  <img src="./eco-toc.png" width="500" alt="Eco-PIMD concept figure">
 </p>
 
 ## 1. Requirements
