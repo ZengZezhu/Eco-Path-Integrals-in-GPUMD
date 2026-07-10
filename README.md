@@ -48,13 +48,13 @@ cd GPUMD-4.6-ecopimd
 Copy the patcher into this folder:
 
 ```bash
-cp /path/to/patch_gpumd46_pimd_modes_strict_fortran.py .
+cp /path/to/patch_gpumd46_pimd.py .
 ```
 
 Apply the patch:
 
 ```bash
-python3 patch_gpumd46_pimd_modes_strict_fortran.py . --max-beads 512
+python3 patch_gpumd46_pimd.py . --max-beads 512
 ```
 
 The `--max-beads` option is optional. It changes the compile-time maximum bead number allowed by GPUMD.
